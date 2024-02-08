@@ -11,7 +11,7 @@ blueprint:
         device:
           integration: deconz
           manufacturer: IKEA of Sweden
-          model: Remote Control N2
+         model: Remote Contr ol N2
     button_up:
       name: Up button press
       description: Action to run on button press

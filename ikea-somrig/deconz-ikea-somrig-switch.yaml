@@ -11,6 +11,7 @@ blueprint:
         device:
           integration: deconz
           manufacturer: IKEA of Sweden
+          model: SOMRIG shortcut button
     button_shortcut_one:
       name: Shortcut One button press
       description: Action to run on button press
