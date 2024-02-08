@@ -1,0 +1,89 @@
+blueprint:
+  name: Disco Light Action
+  description: Turn a RGB light on and change random colors
+  domain: automation
+  input:
+    input_select:
+      name: Input Select Boolean
+      description: input
+      selector:
+        entity:
+          filter:
+            - domain: input_select
+    target_light1:
+      name: Light 1
+      description: Light 1
+      selector:
+        entity:
+          filter:
+            - domain: light
+    target_light2:
+      name: Light 2
+      description: Light 2
+      selector:
+        entity:
+          filter:
+            - domain: light
+    target_light3:
+      name: Light 3
+      description: Light 3
+      selector:
+        entity:
+          filter:
+            - domain: light
+    schedule_start:
+      name: Schedule start time
+      description: Automation only runs after this time.
+      default: 07:00:00
+      selector:
+        time:
+    schedule_stop:
+      name: Schedule stop time
+      description: Automation does not run after this time.
+      default: "19:00:00"
+      selector:
+        time:
+trigger:
+  - platform: state
+    entity_id:
+      - !input input_select
+    to: "On"
+
+condition:
+  - condition: time
+    after: !input schedule_start
+    before: !input schedule_stop
+  - condition: state
+    entity_id: !input input_select
+    state: "On"
+action:
+  - repeat:
+      sequence:
+        - data: {}
+          data_template: >-
+            {% from 'lights.jinja' import getColor_data_template_json %} {{
+            (getColor_data_template_json() | from_json).data_template }}
+          entity_id: !input target_light1
+          service: light.turn_on
+        - data: {}
+          data_template: >-
+            {% from 'lights.jinja' import getColor_data_template_json %} {{
+            (getColor_data_template_json() | from_json).data_template }}
+          entity_id: !input target_light2
+          service: light.turn_on
+        - data: {}
+          data_template: >-
+            {% from 'lights.jinja' import getColor_data_template_json %} {{
+            (getColor_data_template_json() | from_json).data_template }}
+          entity_id: !input target_light3
+          service: light.turn_on
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 0
+            milliseconds: 500
+      while:
+        - condition: state
+          entity_id: !input input_select
+          state: "On"
+mode: single
