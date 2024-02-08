@@ -21,7 +21,8 @@ Here’s a blueprint to support controlling a things with an Ikea Styrbar remote
 Here’s a blueprint to randomly change RGB disco light needs jinja macro function!!!.
 
 ./custom_templates/lights.jinja
-
+```
 {% macro getColor_data_template_json() %}
 { "data_template":{ "rgb_color":[ "{{(range(0, 255)|random)}}", "{{(range(0, 255)|random)}}", "{{(range(0, 255)|random)}}"]}}
 {% endmacro %}
+```
