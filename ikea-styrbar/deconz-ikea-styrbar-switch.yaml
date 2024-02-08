@@ -1,60 +1,109 @@
 blueprint:
-  name: deConz - IKEA somrig
-  description: Control anything using IKEA somrig
-  source_url: https://github.com/noud-github/ha-blueprints/ikea-somrig/deconz-ikea-somrig-switch.yaml
+  name: deConz - IKEA styrbar
+  description: Control anything using IKEA styrbar
+  source_url: https://github.com/noud-github/ha-blueprints/ikea-styrbar/deconz-ikea-styrbar-switch.yaml
   domain: automation
   input:
     remote:
       name: switch
-      description: IKEA Somrig
+      description: IKEA Styrbar
       selector:
         device:
           integration: deconz
           manufacturer: IKEA of Sweden
-    button_shortcut_one:
-      name: Shortcut One button press
+          modelid: Remote Control N2
+    button_up:
+      name: Up button press
       description: Action to run on button press
       default: []
       selector:
         action: {}
-    button_shortcut_one_sr:
-      name: Shortcut One button short release
+    button_up_sr:
+      name: Up button short release
       description: Action to run on button press
       default: []
       selector:
         action: {}
-    button_shortcut_one_lr:
-      name: Shortcut One button long release
+    button_up_lr:
+      name: UP button long release
       description: Action to run on button press
       default: []
       selector:
         action: {}
-    button_shortcut_one_double:
-      name: Shortcut One button double press
+    button_up_double:
+      name: Up button double press
       description: Action to run on button press
       default: []
       selector:
         action: {}
-    button_shortcut_two:
-      name: Shortcut Two button press
+    button_down:
+      name: Down button press
       description: Action to run on button press
       default: []
       selector:
         action: {}
-    button_shortcut_two_sr:
-      name: Shortcut Two button short release
+    button_down_sr:
+      name: Down button short release
       description: Action to run on button press
       default: []
       selector:
         action: {}
-    button_shortcut_two_lr:
-      name: Shortcut Two Button long release
+    button_down_lr:
+      name: Down Button long release
       description: Action to run on button press
       default: []
       selector:
         action: {}
-    button_shortcut_two_double:
-      name: Shortcut Two Button double press
+    button_down_double:
+      name: Down Button double press
+      description: Action to run on button press
+      default: []
+      selector:
+        action: {}  
+    button_left:
+      name: Left button press
+      description: Action to run on button press
+      default: []
+      selector:
+        action: {}
+    button_left_sr:
+      name: Left button short release
+      description: Action to run on button press
+      default: []
+      selector:
+        action: {}
+    button_left_lr:
+      name: Left Button long release
+      description: Action to run on button press
+      default: []
+      selector:
+        action: {}
+    button_left_double:
+      name: Left Button double press
+      description: Action to run on button press
+      default: []
+      selector:
+        action: {}  
+    button_right:
+      name: Right button press
+      description: Action to run on button press
+      default: []
+      selector:
+        action: {}
+    button_right_sr:
+      name: Right button short release
+      description: Action to run on button press
+      default: []
+      selector:
+        action: {}
+    button_right_lr:
+      name: Right Button long release
+      description: Action to run on button press
+      default: []
+      selector:
+        action: {}
+    button_right_double:
+      name: Right Button double press
       description: Action to run on button press
       default: []
       selector:
@@ -72,27 +121,50 @@ action:
   - choose:
       - conditions:
           - "{{ event == 1001 }}"
-        sequence: !input "button_shortcut_one_sr"
+        sequence: !input "button_up_sr"
       - conditions:
           - "{{ event == 1002 }}"
-        sequence: !input "button_shortcut_one"
+        sequence: !input "button_up"
       - conditions:
           - "{{ event == 1003 }}"
-        sequence: !input "button_shortcut_one_lr"
+        sequence: !input "button_up_lr"
       - conditions:
           - "{{ event == 1004 }}"
-        sequence: !input "button_shortcut_one_double"
+        sequence: !input "button_up_double"
       - conditions:
           - "{{ event == 2001 }}"
-        sequence: !input "button_shortcut_two_sr"
+        sequence: !input "button_down_sr"
       - conditions:
           - "{{ event == 2002 }}"
-        sequence: !input "button_shortcut_two"
+        sequence: !input "button_down"
       - conditions:
           - "{{ event == 2003 }}"
-        sequence: !input "button_shortcut_two_lr"
+        sequence: !input "button_down_lr"
       - conditions:
           - "{{ event == 2004 }}"
-        sequence: !input "button_shortcut_two_double"
-     
+        sequence: !input "button_down_double"
+      - conditions:
+          - "{{ event == 3001 }}"
+        sequence: !input "button_left_sr"
+      - conditions:
+          - "{{ event == 3002 }}"
+        sequence: !input "button_left"
+      - conditions:
+          - "{{ event == 3003 }}"
+        sequence: !input "button_left_lr"
+      - conditions:
+          - "{{ event == 3004 }}"
+        sequence: !input "button_left_double"
+      - conditions:
+          - "{{ event == 4001 }}"
+        sequence: !input "button_right_sr"
+      - conditions:
+          - "{{ event == 4002 }}"
+        sequence: !input "button_right"
+      - conditions:
+          - "{{ event == 4003 }}"
+        sequence: !input "button_right_lr"
+      - conditions:
+          - "{{ event == 4004 }}"
+        sequence: !input "button_right_double"
      
